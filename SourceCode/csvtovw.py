@@ -47,5 +47,5 @@ def csv_to_vw(loc_csv, loc_output, train=True):
 
   print("\n %s Task execution time:\n\t%s"%(e, str(datetime.now() - start)))
 
-csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.000", "/home/squirrel/Documents/INF 550 Dataset/train000.vw",train=True)
+csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.csv", "/home/squirrel/Documents/INF 550 Dataset/train.vw",train=True)
 csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.csv", "/home/squirrel/Documents/INF 550 Dataset/test.vw",train=False)
