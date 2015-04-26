@@ -16,7 +16,6 @@ def csv_to_vw(loc_csv, loc_output, train=True):
   to False when munging a test set.
   TODO: Too slow for a daly cron job. Try optimize, Pandas or Go.
   """
-  start = datetime.now()
   print("\nTurning %s into %s. Is_train_set? %s"%(loc_csv,loc_output,train))
 
   with open(loc_output,"wb") as outfile:
