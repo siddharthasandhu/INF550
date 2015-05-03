@@ -1,8 +1,10 @@
 import csv
 import numpy as np
-import matplotlib.pyplot as plt
+
 import pandas as pd
 import brewer2mpl
+import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib import rcParams
 
 #colorbrewer2 Dark2 qualitative color table
@@ -70,14 +72,14 @@ for value in tester[1:]:
 print len(feature_set)
 
 
-fig, axes=plt.subplots(figsize=(23,15), nrows=6, ncols=5)
-fig.subplots_adjust(hspace = 0.8)
-fig.subplots_adjust(wspace = 0.6)
+fig, axes = plt.subplots(figsize=(23, 15), nrows=6, ncols=5)
+fig.subplots_adjust(hspace=0.8)
+fig.subplots_adjust(wspace=0.6)
 
 for ix in np.arange(6):
     for ix2 in np.arange(5):
         if (ix*6 + ix2) < len(feature_set):
-            axes[ix][ix2].hist2d(the_brain[feature_set[ix*6+ix2]], bins=10)
+            axes[ix][ix2].hist(the_brain[feature_set[ix*6+ix2]], bins=10)
             axes[ix][ix2].set_title(feature_set[ix*6+ix2])
             axes[ix][ix2].set_ylabel("Count")
             axes[ix][ix2].set_xlabel("Weight")

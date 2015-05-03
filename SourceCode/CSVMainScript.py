@@ -12,13 +12,6 @@ from csv import DictReader
 
 def csv_to_vw(loc_csv, loc_output, train=True):
 
-  featuresToRemove = []
-  import csv
-  with open('featureRemove.csv', 'rb') as f:
-      reader = csv.reader(f)
-      for row in reader:
-          featuresToRemove.extend(row)
-  featuresToRemove = set(featuresToRemove)
 
   """
   Munges a CSV file (loc_csv) to a VW file (loc_output). Set "train"
@@ -30,8 +23,7 @@ def csv_to_vw(loc_csv, loc_output, train=True):
 
   with open(loc_output,"wb") as outfile:
     for e, row in enumerate( DictReader(open(loc_csv)) ):
-
-	  #Creating the features
+      #Creating the features
       numerical_features = ""
       categorical_features = ""
       for k,v in row.items():
@@ -39,9 +31,8 @@ def csv_to_vw(loc_csv, loc_output, train=True):
           dt = datetime.strptime(v[4:6] + "/" + v[2:4] + "/" + v[0:2] + " " + v[6:8], "%d/%m/%y %H")
           # create a hour of the day feature, a day of the week feature, a month of the year feature
           categorical_features += "hour_" + str(v[6:8]) + " day_" + str(dt.weekday()) + " "
-        if k not in ["id","click", "hour", "device_id", "device_ip"]:
+        if k not in ["id","click"]:
           if len(str(v)) > 0 and str(v) != "d41d8cd9": #this removes the null values
-            if (k + "_" + v) not in featuresToRemove:
               categorical_features += " %s_%s " % (k,v)
             # else:
             #   print "I was not included :( and I am: " + (k + "_" + v)

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 ########################################################
-# __Author__: Xueer Chen <snowwing922@gmail.com>             #
+# __Author__: Siddhartha Sandhu <sandhus@usc.edu>             #
 # Kaggle competition "Display Advertising Challenge":  #
 # https://www.kaggle.com/c/avazu-ctr-prediction #
 # Credit: Triskelion <info@mlwave.com>            #
@@ -20,7 +20,7 @@ def csv_to_vw(loc_csv, loc_output, train=True):
   print("\nTurning %s into %s. Is_train_set? %s"%(loc_csv,loc_output,train))
 
   with open(loc_output,"wb") as outfile:
-    for e, row in enumerate( DictReader(open(loc_csv)) ):
+    for e, row in enumerate(DictReader(open(loc_csv))):
 
 	  #Creating the features
       numerical_features = ""
