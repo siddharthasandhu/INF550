@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 ########################################################
-# __Author__: Xueer Chen <snowwing922@gmail.com>             #
+# __Author__: Siddhartha Singh Sandhu             #
 # Kaggle competition "Display Advertising Challenge":  #
 # https://www.kaggle.com/c/avazu-ctr-prediction #
 # Credit: Triskelion <info@mlwave.com>            #

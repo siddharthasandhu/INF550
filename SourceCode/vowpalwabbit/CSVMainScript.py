@@ -1,11 +1,11 @@
 # -*- coding: UTF-8 -*-
 
 ########################################################
-# __Author__: Sabine Crevoisier and Fraser Campbell            #
+# __Author__: Siddhartha Singh Sandhu           #
 # Kaggle competition "Display Advertising Challenge":  #
 # https://www.kaggle.com/c/avazu-ctr-prediction #
 # Credit: Triskelion <info@mlwave.com>          #
-#  and Xueer Chen for providing the starter code for this competition, which we hereby modify.
+#  and Xueer Chen for providing the starter code for this competition, which I hereby modify.
 ########################################################
 
 from datetime import datetime, date, time
@@ -64,6 +64,6 @@ def csv_to_vw(loc_csv, loc_output, train=True):
 
   print("\n %s Task execution time:\n\t%s"%(e, str(datetime.now() - start)))
 
-csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.csv", "/home/squirrel/Documents/INF 550 Dataset/model/reducedTrain.vw",train=True)
-csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.csv", "/home/squirrel/Documents/INF 550 Dataset/model/reducedtest.vw",train=False)
-csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.000", "/home/squirrel/Documents/INF 550 Dataset/model/reducedtest000.vw",train=False)
+csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.csv", "/home/squirrel/Documents/INF 550 Dataset/model/lesserTrain.vw",train=True)
+csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.csv", "/home/squirrel/Documents/INF 550 Dataset/model/lessertest.vw",train=False)
+csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.000", "/home/squirrel/Documents/INF 550 Dataset/model/lessertest000.vw",train=False)

@@ -18,7 +18,7 @@ class FeatureEngineering:
         d = datetime.strptime(str(timestr), "%y%m%d%H")
         return [float(d.weekday()), float(d.hour)]
 
-    def vwfeature(data):
+    def vwfeature(self,data):
 
         preproc = Pipeline([('fh',FeatureHasher( n_features=2**27,input_type='string', non_negative=False))])
 
@@ -50,11 +50,11 @@ class FeatureEngineering:
         #remove id and click columns
         clean = data.drop(['id','click'], axis=1)
         X_dict = np.asarray(clean.astype(str))
-        y_train = np.asarray(y_train).ravel()
+        self.y_train = np.asarray(y_train).ravel()
 
-        X_train = preproc.fit_transform(X_dict)
-
-        return y_train,X_train
+        self.X_train = preproc.fit_transform(X_dict)
+        print self.y_train + self.X_train
+        return self.y_train,self.X_train
 
 
     def sgdfeature(self,data):
@@ -62,7 +62,6 @@ class FeatureEngineering:
         newdata = pd.DataFrame()
 
         preproc = Pipeline([('fh',FeatureHasher( n_features=2**20,input_type='string'))])
-        print('Inside Feature Engineering')
         ##for SGDClassifier
         newdata['app_id_specs'] = data['app_id'].values+data['app_domain'].values+data['app_category'].values
         newdata['app_dom_specs'] = data['app_domain'].values+data['app_category'].values
@@ -88,3 +87,10 @@ class FeatureEngineering:
         self.X_train = preproc.fit_transform(X_dict)
 
         return self.X_train
+
+
+from csv import DictReader
+
+for e, row in enumerate(open("/home/squirrel/Documents/INF 550 Dataset/train.csv")):
+    print FeatureEngineering().vwfeature(row)
+
