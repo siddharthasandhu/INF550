@@ -66,4 +66,4 @@ def csv_to_vw(loc_csv, loc_output, train=True):
 
 csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.csv", "/home/squirrel/Documents/INF 550 Dataset/model/reducedTrain.vw",train=True)
 csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.csv", "/home/squirrel/Documents/INF 550 Dataset/model/reducedtest.vw",train=False)
-csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.000", "/home/squirrel/Documents/INF 550 Dataset/model/reducedtest.vw",train=False)
+csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.000", "/home/squirrel/Documents/INF 550 Dataset/model/reducedtest000.vw",train=False)
