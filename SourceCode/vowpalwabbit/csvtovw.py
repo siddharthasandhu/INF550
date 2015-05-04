@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 ########################################################
-# __Author__: Siddhartha Sandhu <sandhus@usc.edu>             #
+# __Author__: Xueer Chen <snowwing922@gmail.com>             #
 # Kaggle competition "Display Advertising Challenge":  #
 # https://www.kaggle.com/c/avazu-ctr-prediction #
 # Credit: Triskelion <info@mlwave.com>            #
@@ -9,6 +9,7 @@
 
 from datetime import datetime
 from csv import DictReader
+import sys
 
 def csv_to_vw(loc_csv, loc_output, train=True):
   """
@@ -18,10 +19,10 @@ def csv_to_vw(loc_csv, loc_output, train=True):
   """
   start = datetime.now()
   print("\nTurning %s into %s. Is_train_set? %s"%(loc_csv,loc_output,train))
-
+  
   with open(loc_output,"wb") as outfile:
-    for e, row in enumerate(DictReader(open(loc_csv))):
-
+    for e, row in enumerate( DictReader(open(loc_csv)) ):
+	
 	  #Creating the features
       numerical_features = ""
       categorical_features = ""
@@ -29,23 +30,41 @@ def csv_to_vw(loc_csv, loc_output, train=True):
         if k not in ["id","click"]:
           if len(str(v)) > 0:
            categorical_features += " %s" % v
-
-	  #Creating the labels
+			  
+	  #Creating the labels		  
       if train: #we care about labels
         if row['click'] == "1":
           label = 1
         else:
           label = -1 #we set negative label to -1
         outfile.write( "%s '%s |i%s |c%s\n" % (label,row['id'],numerical_features,categorical_features) )
-
+		
       else: #we dont care about labels
         outfile.write( "1 '%s |i%s |c%s\n" % (row['id'],numerical_features,categorical_features) )
-
+      
 	  #Reporting progress
       if e % 100000 == 0:
         print("%s\t%s"%(e, str(datetime.now() - start)))
 
   print("\n %s Task execution time:\n\t%s"%(e, str(datetime.now() - start)))
 
-csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.000", "/home/squirrel/Documents/INF 550 Dataset/train000.vw",train=True)
-#csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.csv", "/home/squirrel/Documents/INF 550 Dataset/test.vw",train=False)
+def main():
+    return 0
+  
+if __name__ == '__main__':
+  # main should return 0 for success, something else (usually 1) for error.
+    csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.csv",
+          "/home/squirrel/Documents/INF 550 Dataset/model/trainOriginal.vw", train=True)
+    csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/test.csv",
+          "/home/squirrel/Documents/INF 550 Dataset/model/testOriginal.vw", train=False)
+    csv_to_vw("/home/squirrel/Documents/INF 550 Dataset/train.000",
+          "/home/squirrel/Documents/INF 550 Dataset/model/trainProbs.vw", train=True)
+    sys.exit(main())
+
+
+#csv_to_vw("/home/wacax/Wacax/Kaggle/Avazu-CTR-Prediction/AvazuCTR/Data/testProbs.csv",
+#          "/home/wacax/Wacax/Kaggle/Avazu-CTR-Prediction/AvazuCTR/Data/vw/testProbs.vw", train=False)
+#csv_to_vw("/home/wacax/Wacax/Kaggle/Avazu-CTR-Prediction/AvazuCTR/Data/ProbsTfidf.csv",
+#          "/home/wacax/Wacax/Kaggle/Avazu-CTR-Prediction/AvazuCTR/Data/vw/ProbsTfidf.vw", train=True)
+#csv_to_vw("/home/wacax/Wacax/Kaggle/Avazu-CTR-Prediction/AvazuCTR/Data/testProbsTfidf.csv",
+#          "/home/wacax/Wacax/Kaggle/Avazu-CTR-Prediction/AvazuCTR/Data/vw/testProbsTfidf.vw", train=False)
